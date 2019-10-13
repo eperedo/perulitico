@@ -62,4 +62,4 @@ typings/
 
 # app specific
 scripts/politicians.json
-scripts/polls.json
+scripts/polls**.json

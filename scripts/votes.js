@@ -50,7 +50,10 @@ function generatePoll() {
 
 		return newPoll;
 	});
-	writeFileSync('polls.json', JSON.stringify(polls, null, ' '));
+	writeFileSync(
+		`polls-${new Date().getMilliseconds()}.json`,
+		JSON.stringify(polls, null, ' '),
+	);
 }
 
 generatePoll();
