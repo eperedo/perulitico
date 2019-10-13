@@ -1,4 +1,4 @@
-const politicians = require('./politicians.data');
+const politicians = require('./../data/politicians.data');
 
 const route = {
 	handler: async () => {

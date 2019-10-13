@@ -1,6 +1,8 @@
 const Hapi = require('@hapi/hapi');
 
 const politiciansRoute = require('./routes/politician.route');
+const pollsRoute = require('./routes/polls.route');
+const pollRoute = require('./routes/polls.details.route');
 
 const server = Hapi.Server({
 	host: process.env.HOST || 'localhost',
@@ -12,6 +14,8 @@ const server = Hapi.Server({
 
 async function startServer() {
 	server.route(politiciansRoute);
+	server.route(pollsRoute);
+	server.route(pollRoute);
 	await server.start();
 	console.log(`Server running on ${server.info.uri}`);
 }

@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "server.js",
 	"dependencies": {
-		"@hapi/hapi": "18.4.0"
+		"@hapi/hapi": "18.4.0",
+		"lunr": "2.3.7"
 	},
 	"devDependencies": {},
 	"scripts": {
