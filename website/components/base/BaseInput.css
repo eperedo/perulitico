@@ -1,0 +1,18 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	font-size: 20px;
+}
+
+.label {
+	margin: 10px 0;
+}
+
+.input {
+	border: none;
+	border-radius: 10px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	color: #929aab;
+	font-weight: 700;
+	padding: 20px 15px;
+}

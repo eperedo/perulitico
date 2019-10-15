@@ -1,0 +1,33 @@
+.cardItem {
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	font-weight: bold;
+	padding: 15px 10px;
+}
+
+.cardVotes {
+	display: flex;
+	justify-content: space-around;
+	font-size: 20px;
+}
+
+.voteTextSi {
+	color: #4caf50;
+}
+
+.voteTextNo {
+	color: #ff5252;
+}
+
+.voteTextAbst {
+	color: #2196f3;
+}
+
+.voteTextAus {
+	color: #2196f3;
+}
+
+.cardTitle {
+	font-size: 20px;
+}
