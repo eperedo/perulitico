@@ -1,0 +1,22 @@
+.containerHeader {
+	align-items: center;
+	background-color: grey;
+	display: flex;
+	min-height: 30vh;
+	padding: 10px;
+}
+
+.buttonHeader {
+	flex: 1 1 15%;
+	margin-top: 4%;
+}
+
+.itemHeader {
+	flex: 1 1 70%;
+	padding: 10px;
+}
+
+.itemDate {
+	flex: 1 1 15%;
+	padding: 10px;
+}

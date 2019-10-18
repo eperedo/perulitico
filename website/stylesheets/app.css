@@ -2,8 +2,6 @@
 
 * {
 	font-family: 'Open Sans', sans-serif;
-}
-
-body {
-	background-color: gray;
+	margin: 0;
+	padding: 0;
 }
