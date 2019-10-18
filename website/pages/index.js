@@ -31,8 +31,8 @@ function Home() {
 						labelProps={{ htmlFor: 'date' }}
 						inputProps={{
 							id: 'date',
+							pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}',
 							type: 'date',
-							placeholder: 'YYYY-MM-DD',
 						}}
 					>
 						Fecha:
@@ -44,13 +44,23 @@ function Home() {
 					</BaseButton>
 				</div>
 			</div>
-			{/* <Card {...poll} />
-			<BaseInput
-				labelProps={{ htmlFor: 'asd' }}
-				inputProps={{ id: 'asd', placeholder: 'Ley 298, Mocion 200, gobierno' }}
-			>
-				Buscar Votacion:
-			</BaseInput> */}
+			<section className={styles.containerResult}>
+				<header className={styles.headerResult}>
+					<h2>Resultados</h2>
+				</header>
+				<section className={styles.containerLaws}>
+					<Card {...poll} />
+					<Card {...poll} />
+					<Card {...poll} />
+					<Card {...poll} />
+					<Card {...poll} />
+					<Card {...poll} />
+					<Card {...poll} />
+					<Card {...poll} />
+					<Card {...poll} />
+					<Card {...poll} />
+				</section>
+			</section>
 		</div>
 	);
 }

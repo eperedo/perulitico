@@ -16,3 +16,8 @@
 	font-weight: 700;
 	padding: 20px 15px;
 }
+
+input[type='date'] {
+	background-color: #fff;
+	width: auto;
+}

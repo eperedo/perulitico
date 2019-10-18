@@ -1,14 +1,31 @@
 .containerHeader {
 	align-items: center;
-	background-color: grey;
+	background-image: url('/bg-search.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
 	display: flex;
 	min-height: 30vh;
 	padding: 10px;
 }
 
+.containerLaws {
+	display: grid;
+	grid-gap: 30px;
+	grid-template-columns: 1fr 1fr;
+}
+
+.containerResult {
+	background-color: #b5b5b5;
+	padding: 10px;
+}
+
 .buttonHeader {
-	flex: 1 1 15%;
-	margin-top: 4%;
+	flex: 1 1 10%;
+	margin-top: 50px;
+}
+
+.headerResult {
+	padding: 10px 0;
 }
 
 .itemHeader {
@@ -17,6 +34,6 @@
 }
 
 .itemDate {
-	flex: 1 1 15%;
+	flex: 1 1 20%;
 	padding: 10px;
 }
