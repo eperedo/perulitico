@@ -1,0 +1,98 @@
+.cardVotes {
+	display: flex;
+	justify-content: space-around;
+	font-size: 30px;
+	padding: 30px;
+}
+
+.cardVoteItem {
+	padding: 20px;
+}
+
+.voteTextSi {
+	color: #4caf50;
+}
+
+.voteTextNo {
+	color: #ff5252;
+}
+
+.voteTextAbst {
+	color: #2196f3;
+}
+
+.voteTextAus {
+	color: #2196f3;
+}
+
+.containerHeader {
+	align-items: center;
+	background-color: #bdbdbd;
+	display: flex;
+	justify-content: center;
+	min-height: 30vh;
+	padding: 40px;
+	position: relative;
+}
+
+.containerResume {
+	background-color: #fff;
+	border-radius: 20px;
+	padding: 20px;
+	position: absolute;
+	bottom: -100px;
+}
+
+.containerResult {
+	background-color: #e5e5e5;
+	padding-top: 120px;
+	padding: 120px 40px 0 40px;
+}
+
+.containerVotes {
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+}
+
+.header {
+	max-width: 80%;
+}
+
+.title {
+	color: #fff;
+	font-size: 40px;
+	font-weight: 300;
+	text-align: center;
+}
+
+.voteSearch {
+	margin-left: auto;
+	min-width: 400px;
+}
+
+.voteDetails {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+	padding: 20px;
+}
+
+.voteItem {
+	align-items: center;
+	display: flex;
+	font-weight: 700;
+	justify-content: space-around;
+	padding: 0 20px;
+}
+
+.voteItem p {
+	font-size: 20px;
+	margin-right: auto;
+}
+
+.voteItem span {
+	font-size: 20px;
+	margin-left: auto;
+}
