@@ -31,14 +31,13 @@
 	display: flex;
 	justify-content: center;
 	min-height: 30vh;
-	padding: 40px;
+	padding: 5%;
 	position: relative;
 }
 
 .containerResume {
 	background-color: #fff;
 	border-radius: 20px;
-	padding: 20px;
 	position: absolute;
 	bottom: -100px;
 }

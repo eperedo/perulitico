@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './Card.css';
 
-function Card({ title, totalAbst, totalAus, totalSi, totalNo }) {
+function Card({ slug, title, totalAbst, totalAus, totalSi, totalNo }) {
 	return (
 		<div className={styles.cardItem}>
-			<p className={styles.cardTitle}>{title}</p>
+			<a href={`/polls/${slug}`} className={styles.cardTitle}>
+				{title}
+			</a>
 			<div className={styles.cardVotes}>
 				<span className={styles.voteTextSi}>Si: {totalSi}</span>
 				<span className={styles.voteTextNo}>No: {totalNo}</span>
