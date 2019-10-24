@@ -1,8 +1,35 @@
+import { useEffect, useState } from 'react';
 import fetch from 'node-fetch';
 import BaseInput from './../../components/base/BaseInput';
 import styles from './PollDetails.css';
 
-function PollDetails({ title, totalAbst, totalAus, totalNo, totalSi, votes }) {
+function PollDetails({
+	rawDate,
+	title,
+	totalAbst,
+	totalAus,
+	totalNo,
+	totalSi,
+	votes,
+}) {
+	const [searchTerm, setSearchTerm] = useState();
+	const [politicians, setPoliticians] = useState(votes);
+
+	function onChange(e) {
+		setSearchTerm(e.target.value.toLowerCase());
+	}
+
+	useEffect(() => {
+		if (searchTerm) {
+			const filterResult = votes.filter((vote) => {
+				return vote.politicianName.toLowerCase().includes(searchTerm);
+			});
+			setPoliticians(filterResult);
+		} else {
+			setPoliticians(votes);
+		}
+	}, [searchTerm]);
+
 	return (
 		<section>
 			<section className={styles.containerHeader}>
@@ -28,15 +55,28 @@ function PollDetails({ title, totalAbst, totalAus, totalNo, totalSi, votes }) {
 			</section>
 			<section className={styles.containerResult}>
 				<section className={styles.containerVotes}>
+					<header>
+						<h4>Fecha: {rawDate}</h4>
+					</header>
 					<section className={styles.voteSearch}>
-						<BaseInput inputProps={{ placeholder: 'Buscar Congresista' }} />
+						<BaseInput
+							inputProps={{
+								onChange: onChange,
+								placeholder: 'Buscar Congresista',
+							}}
+						/>
 					</section>
 					<section className={styles.voteDetails}>
-						{votes.map((vote) => {
+						{politicians.map((vote) => {
 							return (
 								<div key={vote.politicianId} className={styles.voteItem}>
-									<p>{vote.politicianId}</p>
-									<span className={styles.voteTextSi}>{vote.value}</span>
+									<p>{vote.politicianName}</p>
+									<span
+										title={vote.voteLabel}
+										style={{ color: vote.voteColor }}
+									>
+										{vote.value}
+									</span>
 								</div>
 							);
 						})}

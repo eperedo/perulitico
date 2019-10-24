@@ -61,5 +61,5 @@ typings/
 .next
 
 # app specific
-scripts/politicians.json
+scripts/politicians**.json
 scripts/polls**.json
