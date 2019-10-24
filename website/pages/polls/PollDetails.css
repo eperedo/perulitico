@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: space-around;
 	font-size: 30px;
-	padding: 30px;
+	padding: 15px;
 }
 
 .cardVoteItem {
@@ -31,21 +31,19 @@
 	display: flex;
 	justify-content: center;
 	min-height: 30vh;
-	padding: 40px;
+	padding: 5%;
 	position: relative;
 }
 
 .containerResume {
 	background-color: #fff;
 	border-radius: 20px;
-	padding: 20px;
+	bottom: -60px;
 	position: absolute;
-	bottom: -100px;
 }
 
 .containerResult {
 	background-color: #e5e5e5;
-	padding-top: 120px;
 	padding: 120px 40px 0 40px;
 }
 
@@ -90,6 +88,7 @@
 .voteItem p {
 	font-size: 20px;
 	margin-right: auto;
+	text-transform: capitalize;
 }
 
 .voteItem span {

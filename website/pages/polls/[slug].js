@@ -1,58 +1,104 @@
+import { useEffect, useState } from 'react';
+import fetch from 'node-fetch';
 import BaseInput from './../../components/base/BaseInput';
 import styles from './PollDetails.css';
 
-function PollDetails() {
+function PollDetails({
+	rawDate,
+	title,
+	totalAbst,
+	totalAus,
+	totalNo,
+	totalSi,
+	votes,
+}) {
+	const [searchTerm, setSearchTerm] = useState();
+	const [politicians, setPoliticians] = useState(votes);
+
+	function onChange(e) {
+		setSearchTerm(e.target.value.toLowerCase());
+	}
+
+	useEffect(() => {
+		if (searchTerm) {
+			const filterResult = votes.filter((vote) => {
+				return vote.politicianName.toLowerCase().includes(searchTerm);
+			});
+			setPoliticians(filterResult);
+		} else {
+			setPoliticians(votes);
+		}
+	}, [searchTerm]);
+
 	return (
 		<section>
 			<section className={styles.containerHeader}>
 				<header className={styles.header}>
-					<h1 className={styles.title}>
-						PROYECTO DE LEY 23: EXTENDER LA OBLIGACION DE LOS FUNCIONARIOS Y
-						SERVIDORES PUBLICOS QUE PRESENTAR DECLARACION JURADA DE INGRESOS
-						BIENES Y RENTAS PARA INCREMENTAR LOS ALCANCES DE LA FISCALIZACIONQUE
-						REALIZA LA CONTRALORIA GENERAL DE LA REPUBLICA
-					</h1>
+					<h1 className={styles.title}>{title}</h1>
 				</header>
 				<section className={styles.containerResume}>
 					<div className={styles.cardVotes}>
 						<span className={`${styles.cardVoteItem} ${styles.voteTextSi}`}>
-							Si: 20
+							Si: {totalSi}
 						</span>
 						<span className={`${styles.cardVoteItem} ${styles.voteTextNo}`}>
-							No: 100
+							No: {totalNo}
 						</span>
 						<span className={`${styles.cardVoteItem} ${styles.voteTextAbst}`}>
-							Abst: 5
+							Abst: {totalAbst}
 						</span>
 						<span className={`${styles.cardVoteItem} ${styles.voteTextAus}`}>
-							Aus: 5
+							Aus: {totalAus}
 						</span>
 					</div>
 				</section>
 			</section>
 			<section className={styles.containerResult}>
 				<section className={styles.containerVotes}>
+					<header>
+						<h4>Fecha: {rawDate}</h4>
+					</header>
 					<section className={styles.voteSearch}>
-						<BaseInput inputProps={{ placeholder: 'Buscar Congresista' }} />
+						<BaseInput
+							inputProps={{
+								onChange: onChange,
+								placeholder: 'Buscar Congresista',
+							}}
+						/>
 					</section>
 					<section className={styles.voteDetails}>
-						<div className={styles.voteItem}>
-							<p>ACUÑA NUÑEZ, RICHARD</p>
-							<span className={styles.voteTextSi}>SI</span>
-						</div>
-						<div className={styles.voteItem}>
-							<p>ACUÑA NUÑEZ, RICHARD</p>
-							<span className={styles.voteTextNo}>No</span>
-						</div>
-						<div className={styles.voteItem}>
-							<p>OLAECHEA ALVAREZ CALDERON, PEDRO</p>
-							<span className={styles.voteTextNo}>No</span>
-						</div>
+						{politicians.map((vote) => {
+							return (
+								<div key={vote.politicianId} className={styles.voteItem}>
+									<p>{vote.politicianName}</p>
+									<span
+										title={vote.voteLabel}
+										style={{ color: vote.voteColor }}
+									>
+										{vote.value}
+									</span>
+								</div>
+							);
+						})}
 					</section>
 				</section>
 			</section>
 		</section>
 	);
 }
+
+const BASE_URL = 'https://perulitico-api-n3mrko2g5.now.sh';
+const SEARCH_URL = 'polls';
+
+async function getInitialProps({ query }) {
+	const { slug } = query;
+	const response = await fetch(`${BASE_URL}/${SEARCH_URL}/${slug}`);
+	const poll = await response.json();
+	return {
+		...poll,
+	};
+}
+
+PollDetails.getInitialProps = getInitialProps;
 
 export default PollDetails;
