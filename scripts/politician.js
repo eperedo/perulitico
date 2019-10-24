@@ -16,5 +16,10 @@ csvtojsonV2()
 				return newPolitician;
 			})
 			.filter((p) => Boolean(p.slug));
-		writeFileSync('politicians.json', JSON.stringify(politicians, null, ' '));
-	});
+		console.log(`${politicians.length} politicians found`);
+		writeFileSync(
+			`politicians-${new Date().getTime()}.json`,
+			JSON.stringify(politicians, null, ' '),
+		);
+	})
+	.catch(console.log);

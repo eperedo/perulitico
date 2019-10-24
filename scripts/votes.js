@@ -3,23 +3,24 @@ const excelToJson = require('convert-excel-to-json');
 const slug = require('slug');
 const { voteValues } = require('./constants');
 
-const csvFilePath = './templates/polls.xlsx';
-
 function getPoliticians() {
 	const politicians = readFileSync('./politicians.json', { encoding: 'UTF-8' });
 	return JSON.parse(politicians);
 }
 
-function generatePoll() {
-	const politicians = getPoliticians();
+let pollId = 1;
+const singleResult = [];
+const politicians = getPoliticians();
+
+function generatePoll(csvFilePath, sheetName) {
 	const result = excelToJson({
 		sourceFile: csvFilePath,
 	});
-	const pollsSheet = result['Hoja 1'];
+	const pollsSheet = result[sheetName];
 	const pollsEntries = Object.entries(pollsSheet[1]);
 	const polls = pollsEntries.map((item, index) => {
 		const [date, title] = item[1].split('---');
-		const pollId = index + 1;
+		// const pollId = index + 1;
 		const totalValues = Object.keys(voteValues).reduce((acum, item) => {
 			acum[`total${voteValues[item].key}`] = 0;
 			return acum;
@@ -34,6 +35,7 @@ function generatePoll() {
 		};
 		newPoll.votes = politicians.map((politician, index) => {
 			const newVote = {
+				politicianName: politician.fullName,
 				politicianId: politician.slug,
 				pollId,
 				// index + 2 because in excel the first politician is
@@ -43,17 +45,30 @@ function generatePoll() {
 			const voteConstant = voteValues[newVote.value.toUpperCase()];
 			if (voteConstant) {
 				const totalLabel = `total${voteConstant.key}`;
+				newVote.voteColor = voteConstant.color;
+				newVote.voteLabel = voteConstant.label;
 				newPoll[totalLabel] += 1;
+			} else {
+				console.log(
+					`Cannot found "${newVote.value}" value in poll ${newPoll.title}`,
+				);
 			}
 			return newVote;
 		});
-
+		pollId += 1;
 		return newPoll;
 	});
+	singleResult.push(...polls);
 	writeFileSync(
-		`polls-${new Date().getMilliseconds()}.json`,
+		`polls-${sheetName}-${new Date().getTime()}.json`,
 		JSON.stringify(polls, null, ' '),
 	);
 }
 
-generatePoll();
+generatePoll('./templates/polls-2016.xlsx', '2016');
+generatePoll('./templates/polls-2017.xlsx', '2017');
+
+writeFileSync(
+	`polls-single-result-${new Date().getTime()}.json`,
+	JSON.stringify(singleResult, null, ' '),
+);
