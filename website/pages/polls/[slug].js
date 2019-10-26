@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import fetch from 'node-fetch';
 import BaseInput from './../../components/base/BaseInput';
 import styles from './PollDetails.css';
+import { getPollDetails } from './../api/polls';
 
 function PollDetails({
 	rawDate,
@@ -87,13 +87,9 @@ function PollDetails({
 	);
 }
 
-const BASE_URL = 'https://perulitico-api-n3mrko2g5.now.sh';
-const SEARCH_URL = 'polls';
-
 async function getInitialProps({ query }) {
 	const { slug } = query;
-	const response = await fetch(`${BASE_URL}/${SEARCH_URL}/${slug}`);
-	const poll = await response.json();
+	const poll = await getPollDetails(slug);
 	return {
 		...poll,
 	};

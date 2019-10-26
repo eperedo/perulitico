@@ -3,9 +3,7 @@ import Card from './../components/Card';
 import BaseButton from '../components/base/BaseButton';
 import BaseInput from '../components/base/BaseInput';
 import styles from './home.css';
-
-const BASE_URL = 'https://perulitico-api-n3mrko2g5.now.sh';
-const SEARCH_URL = '/polls';
+import { getPolls } from './api/polls';
 
 function Home() {
 	const [loading, setLoading] = useState(false);
@@ -16,10 +14,7 @@ function Home() {
 	async function fetchPolls() {
 		if (searchTerm) {
 			setLoading(true);
-			const response = await fetch(
-				`${BASE_URL}${SEARCH_URL}?search=${searchTerm}&date=${dateTerm}`,
-			);
-			const json = await response.json();
+			const json = await getPolls(searchTerm, dateTerm);
 			setPolls(json);
 			setLoading(false);
 			return json;
