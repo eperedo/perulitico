@@ -55,7 +55,7 @@ function PollDetails({
 			</section>
 			<section className={styles.containerResult}>
 				<section className={styles.containerVotes}>
-					<header>
+					<header className={styles.voteDate}>
 						<h4>Fecha: {rawDate}</h4>
 					</header>
 					<section className={styles.voteSearch}>

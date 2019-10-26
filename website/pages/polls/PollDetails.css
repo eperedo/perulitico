@@ -1,12 +1,11 @@
 .cardVotes {
 	display: flex;
 	justify-content: space-around;
-	font-size: 30px;
-	padding: 15px;
+	font-size: 16px;
 }
 
 .cardVoteItem {
-	padding: 20px;
+	padding: 10px;
 }
 
 .voteTextSi {
@@ -38,20 +37,20 @@
 .containerResume {
 	background-color: #fff;
 	border-radius: 20px;
-	bottom: -60px;
+	bottom: -30px;
 	position: absolute;
 }
 
 .containerResult {
 	background-color: #e5e5e5;
-	padding: 120px 40px 0 40px;
+	padding: 60px 20px 0 20px;
 }
 
 .containerVotes {
 	background-color: #fff;
 	display: flex;
 	flex-direction: column;
-	padding: 20px;
+	padding: 10px;
 }
 
 .header {
@@ -60,21 +59,21 @@
 
 .title {
 	color: #fff;
-	font-size: 40px;
+	font-size: 16px;
 	font-weight: 300;
+	overflow: hidden;
 	text-align: center;
 }
 
-.voteSearch {
-	margin-left: auto;
-	min-width: 400px;
+.voteDate {
+	align-self: center;
 }
 
 .voteDetails {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
 	grid-gap: 10px;
-	padding: 20px;
+	padding: 10px;
 }
 
 .voteItem {
@@ -82,16 +81,64 @@
 	display: flex;
 	font-weight: 700;
 	justify-content: space-around;
-	padding: 0 20px;
 }
 
 .voteItem p {
-	font-size: 20px;
+	font-size: 16px;
 	margin-right: auto;
 	text-transform: capitalize;
 }
 
 .voteItem span {
-	font-size: 20px;
+	font-size: 16px;
 	margin-left: auto;
+}
+
+@media only screen and (min-width: 768px) {
+	.cardVotes {
+		font-size: 30px;
+		padding: 15px;
+	}
+
+	.cardVoteItem {
+		padding: 20px;
+	}
+
+	.containerResult {
+		padding: 120px 40px 0 40px;
+	}
+
+	.containerResume {
+		bottom: -60px;
+	}
+
+	.containerVotes {
+		padding: 20px;
+	}
+
+	.voteDetails {
+		grid-template-columns: 1fr 1fr;
+		padding: 20px;
+	}
+
+	.voteSearch {
+		margin-left: auto;
+		min-width: 400px;
+	}
+
+	.voteItem {
+		padding: 0 20px;
+	}
+
+	.voteItem p {
+		font-size: 20px;
+	}
+
+	.voteItem span {
+		font-size: 20px;
+	}
+
+	.title {
+		font-size: 40px;
+	}
 }
