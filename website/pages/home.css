@@ -4,6 +4,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	display: flex;
+	flex-direction: column;
 	min-height: 30vh;
 	padding: 10px;
 }
@@ -11,7 +12,7 @@
 .containerLaws {
 	display: grid;
 	grid-gap: 30px;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
 }
 
 .containerResult {
@@ -36,4 +37,14 @@
 .itemDate {
 	flex: 1 1 20%;
 	padding: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+	.containerHeader {
+		flex-direction: row;
+	}
+
+	.containerLaws {
+		grid-template-columns: 1fr 1fr;
+	}
 }
