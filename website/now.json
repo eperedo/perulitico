@@ -1,0 +1,6 @@
+{
+	"name": "perulitico-website",
+	"env": {
+		"API_URL": "@api_url"
+	}
+}
