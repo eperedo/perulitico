@@ -4,6 +4,7 @@ import BaseButton from '../components/base/BaseButton';
 import BaseInput from '../components/base/BaseInput';
 import styles from './home.css';
 import { getPolls } from './api/polls';
+import TheHeader from '../components/TheHeader';
 
 function Home() {
 	const [loading, setLoading] = useState(false);
@@ -33,6 +34,7 @@ function Home() {
 
 	return (
 		<div className="container">
+			<TheHeader bgColor="#fff" />
 			<div className={styles.containerHeader}>
 				<div className={styles.itemHeader}>
 					<BaseInput

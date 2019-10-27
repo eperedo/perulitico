@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import BaseInput from './../../components/base/BaseInput';
 import styles from './PollDetails.css';
 import { getPollDetails } from './../api/polls';
+import TheHeader from '../../components/TheHeader';
 
 function PollDetails({
 	rawDate,
@@ -32,6 +33,7 @@ function PollDetails({
 
 	return (
 		<section>
+			<TheHeader />
 			<section className={styles.containerHeader}>
 				<header className={styles.header}>
 					<h1 className={styles.title}>{title}</h1>
