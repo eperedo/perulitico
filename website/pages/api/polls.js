@@ -18,3 +18,8 @@ export async function getPollDetails(slug) {
 	const response = await fetch(`${BASE_URL}/${SEARCH_URL}/${slug}`);
 	return parseToJson(response);
 }
+
+export async function getPoliticians() {
+	const response = await window.fetch(`${BASE_URL}/politicians`);
+	return parseToJson(response);
+}

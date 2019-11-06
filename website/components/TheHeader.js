@@ -14,6 +14,11 @@ function TheHeader({ bgColor }) {
 					<a>Inicio</a>
 				</Link>
 			</li>
+			<li>
+				<Link href="/politicians">
+					<a>Polític@s</a>
+				</Link>
+			</li>
 		</ul>
 	);
 }

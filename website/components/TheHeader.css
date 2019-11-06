@@ -4,3 +4,7 @@
 	list-style: none;
 	padding: 20px;
 }
+
+.containerMenu li {
+	padding: 5px;
+}
