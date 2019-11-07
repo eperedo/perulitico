@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import BaseInput from './../../components/base/BaseInput';
 import styles from './PollDetails.css';
 import { getPollDetails } from './../api/polls';
@@ -72,7 +73,11 @@ function PollDetails({
 						{politicians.map((vote) => {
 							return (
 								<div key={vote.politicianId} className={styles.voteItem}>
-									<p>{vote.politicianName}</p>
+									<p>
+										<Link href={`/politicians/${vote.politicianId}`}>
+											<a>{vote.politicianName}</a>
+										</Link>
+									</p>
 									<span
 										title={vote.voteLabel}
 										style={{ color: vote.voteColor }}

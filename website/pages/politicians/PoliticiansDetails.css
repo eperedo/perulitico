@@ -1,0 +1,43 @@
+.containerEvents {
+	display: grid;
+	grid-gap: 20px;
+}
+
+.eventItem {
+	border-radius: 10px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	padding: 20px;
+}
+
+.eventDate {
+	display: flex;
+	padding-top: 10px;
+	justify-content: space-between;
+}
+
+.profileContainer {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 1fr;
+	padding: 20px;
+}
+
+.leftSection {
+	text-align: center;
+}
+
+.containerTitle {
+	font-size: 24px;
+	padding: 10px 0;
+	text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+	.containerEvents {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.profileContainer {
+		grid-template-columns: 0.2fr 1fr;
+	}
+}

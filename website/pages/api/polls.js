@@ -23,3 +23,15 @@ export async function getPoliticians() {
 	const response = await window.fetch(`${BASE_URL}/politicians`);
 	return parseToJson(response);
 }
+
+export async function getPoliticianBySlug(slug) {
+	const response = await fetch(`${BASE_URL}/politicians/${slug}`);
+	return parseToJson(response);
+}
+
+export async function getEvents(slug, from, to) {
+	const response = await window.fetch(
+		`${BASE_URL}/politicians/${slug}/1/events?from=${from}&to=${to}`,
+	);
+	return parseToJson(response);
+}
