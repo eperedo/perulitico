@@ -24,7 +24,10 @@ function PoliticiansPage() {
 									/>
 								</div>
 								<p>
-									<Link href={`/politicians/${politician.slug}`}>
+									<Link
+										href={`/politicians/${politician.slug}`}
+										prefetch={false}
+									>
 										<a>{politician.fullName}</a>
 									</Link>
 								</p>

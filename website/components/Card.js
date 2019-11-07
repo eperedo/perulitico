@@ -1,12 +1,13 @@
+import Link from 'next/link';
 import React from 'react';
 import styles from './Card.css';
 
 function Card({ slug, title, totalAbst, totalAus, totalSi, totalNo }) {
 	return (
 		<div className={styles.cardItem}>
-			<a href={`/polls/${slug}`} className={styles.cardTitle}>
-				{title}
-			</a>
+			<Link href={`/polls/${slug}`} prefetch={false}>
+				<a className={styles.cardTitle}>{title}</a>
+			</Link>
 			<div className={styles.cardVotes}>
 				<span className={styles.voteTextSi}>Si: {totalSi}</span>
 				<span className={styles.voteTextNo}>No: {totalNo}</span>

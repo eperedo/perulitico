@@ -74,7 +74,10 @@ function PollDetails({
 							return (
 								<div key={vote.politicianId} className={styles.voteItem}>
 									<p>
-										<Link href={`/politicians/${vote.politicianId}`}>
+										<Link
+											href={`/politicians/${vote.politicianId}`}
+											prefetch={false}
+										>
 											<a>{vote.politicianName}</a>
 										</Link>
 									</p>

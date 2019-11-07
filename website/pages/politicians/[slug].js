@@ -31,7 +31,7 @@ function PoliticianDetails({ politician }) {
 						<p>{event.description}</p>
 						<div className={styles.eventDate}>
 							<span>{event.eventDate}</span>
-							<Link href={`/polls/${event.webSlug}`}>
+							<Link href={`/polls/${event.webSlug}`} prefetch={false}>
 								<a>Ver detalle</a>
 							</Link>
 						</div>
