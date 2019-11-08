@@ -23,6 +23,7 @@ function BaseHead({ description = DEFAULT_DESCRIPTION, title, url = '' }) {
 			{/* facebook open graph */}
 			<meta property="og:type" content="article" />
 			<meta property="og:title" content={title} />
+			<meta property="og:description" content={description} />
 			<meta property="og:site_name" content="perulitico" />
 			<meta property="og:url" content={`${SITE_DOMAIN}/${url}`} />
 			<meta property="og:image" content={`${SITE_DOMAIN}/default-avatar.png`} />
