@@ -5,6 +5,7 @@ import TheHeader from './../../components/TheHeader';
 import BaseButton from './../../components/base/BaseButton';
 import styles from './PoliticiansDetails.css';
 import { getEvents, getPoliticianBySlug } from './../api/polls';
+import BaseHead from '../../components/base/BaseHead';
 
 function PoliticianDetails({ politician }) {
 	const [page, setPage] = useState(0);
@@ -50,6 +51,7 @@ function PoliticianDetails({ politician }) {
 
 	return (
 		<section>
+			<BaseHead title={`Perfil de ${politician.fullName}`} />
 			<TheHeader />
 			<section className={styles.profileContainer}>
 				<section className={styles.leftSection}>

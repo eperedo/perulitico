@@ -3,12 +3,14 @@ import useSWR from 'swr';
 import TheHeader from './../../components/TheHeader';
 import { getPoliticians } from '../api/polls';
 import styles from './PoliticiansPage.css';
+import BaseHead from '../../components/base/BaseHead';
 
 function PoliticiansPage() {
 	const { data } = useSWR('politicians', getPoliticians);
 
 	return (
 		<section>
+			<BaseHead title="Listado de Politicos" url="/politicians" />
 			<TheHeader />
 			{data && (
 				<section className={styles.politiciansList}>

@@ -4,9 +4,11 @@ import BaseInput from './../../components/base/BaseInput';
 import styles from './PollDetails.css';
 import { getPollDetails } from './../api/polls';
 import TheHeader from '../../components/TheHeader';
+import BaseHead from './../../components/base/BaseHead';
 
 function PollDetails({
 	rawDate,
+	slug,
 	title,
 	totalAbst,
 	totalAus,
@@ -34,6 +36,7 @@ function PollDetails({
 
 	return (
 		<section>
+			<BaseHead title={title} description={title} url={`/polls/${slug}`} />
 			<TheHeader />
 			<section className={styles.containerHeader}>
 				<header className={styles.header}>

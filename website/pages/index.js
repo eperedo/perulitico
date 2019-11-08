@@ -5,6 +5,7 @@ import BaseInput from '../components/base/BaseInput';
 import styles from './home.css';
 import { getPolls } from './api/polls';
 import TheHeader from '../components/TheHeader';
+import BaseHead from '../components/base/BaseHead';
 
 function Home() {
 	const [loading, setLoading] = useState(false);
@@ -34,6 +35,7 @@ function Home() {
 
 	return (
 		<div className="container">
+			<BaseHead title="Inicio" />
 			<TheHeader bgColor="#fff" />
 			<div className={styles.containerHeader}>
 				<div className={styles.itemHeader}>
