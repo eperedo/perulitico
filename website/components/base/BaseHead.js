@@ -19,6 +19,10 @@ function BaseHead({ description = DEFAULT_DESCRIPTION, title, url = '' }) {
 			<meta name="twitter:site" content="@perulitico" />
 			<meta name="twitter:title" content={title} />
 			<meta name="twitter:description" content={description} />
+			<meta
+				name="twitter:image"
+				content={`${SITE_DOMAIN}/default-avatar.png`}
+			/>
 
 			{/* facebook open graph */}
 			<meta property="og:type" content="article" />
