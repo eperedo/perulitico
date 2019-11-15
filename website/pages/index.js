@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { Fragment, useCallback, useState, useRef } from 'react';
 import Card from './../components/Card';
 import BaseButton from '../components/base/BaseButton';
 import BaseInput from '../components/base/BaseInput';
@@ -10,13 +10,13 @@ import BaseHead from '../components/base/BaseHead';
 function Home() {
 	const [loading, setLoading] = useState(false);
 	const [polls, setPolls] = useState([]);
-	const [searchTerm, setSearchTerm] = useState('');
+	const searchRef = useRef();
 	const [dateTerm, setDateTerm] = useState('');
 
 	async function fetchPolls() {
-		if (searchTerm) {
+		if (searchRef.current.value) {
 			setLoading(true);
-			const json = await getPolls(searchTerm, dateTerm);
+			const json = await getPolls(searchRef.current.value, dateTerm);
 			setPolls(json);
 			setLoading(false);
 			return json;
@@ -31,7 +31,7 @@ function Home() {
 
 	const searchPolls = useCallback(() => {
 		fetchPolls();
-	}, [searchTerm, dateTerm]);
+	}, [searchRef.current, dateTerm]);
 
 	return (
 		<div className="container">
@@ -43,7 +43,7 @@ function Home() {
 						labelProps={{ htmlFor: 'search' }}
 						inputProps={{
 							id: 'search',
-							onChange: (e) => setSearchTerm(e.target.value),
+							ref: searchRef,
 							placeholder: 'mocion, gobierno, coima, ministro, etc',
 						}}
 					>
@@ -74,14 +74,30 @@ function Home() {
 				</div>
 			</div>
 			<section className={styles.containerResult}>
-				<header className={styles.headerResult}>
-					{loading ? <h2>Buscando...</h2> : <h2>Resultados</h2>}
-				</header>
-				<section className={styles.containerLaws}>
-					{polls.map((poll) => {
-						return <Card key={poll.id} {...poll} />;
-					})}
-				</section>
+				{polls.length > 0 && (
+					<Fragment>
+						<header className={styles.headerResult}>
+							{loading ? (
+								<h2>Buscando...</h2>
+							) : (
+								<h2>Se encontraron {polls.length} votaciones</h2>
+							)}
+						</header>
+						<section className={styles.containerLaws}>
+							{polls.map((poll) => {
+								return <Card key={poll.id} {...poll} />;
+							})}
+						</section>
+					</Fragment>
+				)}
+				{polls.length === 0 && searchRef.current && (
+					<header className={styles.headerResult}>
+						<h2>
+							No se encontraron votaciones con la palabra "
+							{searchRef.current.value}"
+						</h2>
+					</header>
+				)}
 			</section>
 		</div>
 	);
