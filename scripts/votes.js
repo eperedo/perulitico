@@ -31,12 +31,12 @@ function generatePoll(csvFilePath, sheetName) {
 			slug: slug(title.trim().toLowerCase()),
 			title: title.trim(),
 			utcDate: new Date(String(date).trim()),
-			...totalValues,
+			result: totalValues,
 		};
 		newPoll.votes = politicians.map((politician, index) => {
 			const newVote = {
 				politicianName: politician.fullName,
-				politicianId: politician.slug,
+				politicianSlug: politician.slug,
 				pollId,
 				// index + 2 because in excel the first politician is
 				// in the third cell
@@ -47,7 +47,7 @@ function generatePoll(csvFilePath, sheetName) {
 				const totalLabel = `total${voteConstant.key}`;
 				newVote.voteColor = voteConstant.color;
 				newVote.voteLabel = voteConstant.label;
-				newPoll[totalLabel] += 1;
+				newPoll.result[totalLabel] += 1;
 			} else {
 				console.log(
 					`Cannot found "${newVote.value}" value in poll ${newPoll.title}`,
