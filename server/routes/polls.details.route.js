@@ -3,7 +3,7 @@ const route = {
 		const { slug } = req.params;
 		const { Poll } = req.models();
 		const poll = await Poll.query()
-			.eager('votes')
+			.withGraphFetched('votes')
 			.where('slug', slug)
 			.first();
 		if (poll) {
