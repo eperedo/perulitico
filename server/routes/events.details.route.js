@@ -1,30 +1,40 @@
-const polls = require('./../data/polls.data');
-const EVENTS_PER_PAGE = 19;
+const EVENTS_PER_PAGE = 20;
 
 const route = {
-  handler: async (req) => {
-    const { politicianSlug, typeEvent } = req.params;
-    const from = req.query.from || 0;
-    const to = req.query.to || EVENTS_PER_PAGE;
-    
-    const events = [];
-    
-    for (let index = from; index <= to; index++) {
-      const element = polls[index];
-      const politicianVote = element.votes.find(v => v.politicianId === politicianSlug);
-      const newEvent = {
-        description: `He marcado ${politicianVote.voteLabel} en la votación ${element.title}`,
-        eventDate: element.rawDate,
-        webSlug: element.slug,
-        politicianId: politicianVote.politicianId,
-      };
-      events.push(newEvent);
-    }
-    
-    return events.filter(e => e.politicianId === politicianSlug);
-  },
-  method: 'GET',
-  path: '/politicians/{politicianSlug}/{typeEvent}/events',
+	handler: async (req) => {
+		const { Vote } = req.models();
+		const { politicianSlug } = req.params;
+		const page = req.query.page || 0;
+		const limit = req.query.limit || EVENTS_PER_PAGE;
+
+		const events = await Vote.query()
+			.select(
+				'votes.voteLabel',
+				'votes.politicianSlug',
+				'votes.id',
+				'polls.rawDate',
+				'polls.title',
+				'polls.slug',
+			)
+			.join('polls', 'polls.id', 'votes.pollId')
+			.orderBy('polls.rawDate', 'asc')
+			.where('politicianSlug', politicianSlug)
+			.page(page, limit);
+
+		return events.results.map((item) => {
+			const newEvent = {
+				id: item.id,
+				description: `He marcado ${item.voteLabel} en la votación ${item.title}`,
+				eventDate: item.rawDate,
+				webSlug: item.slug,
+				politicianId: item.politicianSlug,
+			};
+
+			return newEvent;
+		});
+	},
+	method: 'GET',
+	path: '/politicians/{politicianSlug}/{typeEvent}/events',
 };
 
 module.exports = route;
