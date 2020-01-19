@@ -1,7 +1,9 @@
-const politicians = require('./../data/politicians.data');
-
 const route = {
-	handler: async () => {
+	handler: async (request) => {
+		const { Politician } = request.models();
+
+		const politicians = await Politician.query();
+
 		return politicians;
 	},
 	method: 'GET',
