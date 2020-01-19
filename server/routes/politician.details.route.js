@@ -1,9 +1,10 @@
-const politicians = require('./../data/politicians.data');
-
 const route = {
 	handler: async (req, h) => {
+		const { Politician } = req.models();
 		const { slug } = req.params;
-		const politician = politicians.find((p) => p.slug === slug);
+		const politician = await Politician.query()
+			.where('slug', slug)
+			.first();
 		if (politician) {
 			return politician;
 		} else {
