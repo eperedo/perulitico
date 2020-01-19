@@ -1,9 +1,11 @@
-const polls = require('./../data/polls.data');
-
 const route = {
 	handler: async (req, h) => {
 		const { slug } = req.params;
-		const poll = polls.find((p) => p.slug === slug);
+		const { Poll } = req.models();
+		const poll = await Poll.query()
+			.eager('votes')
+			.where('slug', slug)
+			.first();
 		if (poll) {
 			return poll;
 		} else {
