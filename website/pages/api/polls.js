@@ -31,7 +31,8 @@ export async function getPoliticianBySlug(slug) {
 
 export async function getEvents(slug, from, to) {
 	const response = await window.fetch(
-		`${BASE_URL}/politicians/${slug}/1/events?from=${from}&to=${to}`,
+		`${BASE_URL}/politicians/${slug}/1/events?page=${from}&limit=${to}`,
 	);
+
 	return parseToJson(response);
 }

@@ -1,5 +1,9 @@
 {
 	"name": "perulitico-api",
+	"env": {
+		"NODE_ENV": "production",
+		"PG_URL": "@pg_url_prod"
+	},
 	"builds": [
 		{
 			"src": "server.js",

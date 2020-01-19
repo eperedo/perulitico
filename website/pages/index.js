@@ -85,7 +85,14 @@ function Home() {
 						</header>
 						<section className={styles.containerLaws}>
 							{polls.map((poll) => {
-								return <Card key={poll.id} {...poll} />;
+								return (
+									<Card
+										key={poll.id}
+										slug={poll.slug}
+										title={poll.title}
+										{...poll.result}
+									/>
+								);
 							})}
 						</section>
 					</Fragment>

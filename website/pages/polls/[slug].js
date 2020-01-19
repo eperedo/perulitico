@@ -78,7 +78,7 @@ function PollDetails({
 								<div key={vote.politicianId} className={styles.voteItem}>
 									<p>
 										<Link
-											href={`/politicians/${vote.politicianId}`}
+											href={`/politicians/${vote.politicianSlug}`}
 											prefetch={false}
 										>
 											<a>{vote.politicianName}</a>
@@ -105,6 +105,7 @@ async function getInitialProps({ query }) {
 	const poll = await getPollDetails(slug);
 	return {
 		...poll,
+		...poll.result,
 	};
 }
 

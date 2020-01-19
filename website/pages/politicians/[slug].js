@@ -15,10 +15,8 @@ function PoliticianDetails({ politician }) {
 			const newOffset = offset || 0;
 			const { data: events } = withSWR(
 				useSWR(
-					`/politicians/${
-						politician.slug
-					}/1/events?from=${newOffset}&to=${newOffset + 19}`,
-					() => getEvents(politician.slug, newOffset, newOffset + 19),
+					`/politicians/${politician.slug}/1/events?page=${newOffset}&limit=20`,
+					() => getEvents(politician.slug, newOffset, 20),
 				),
 			);
 
@@ -40,12 +38,12 @@ function PoliticianDetails({ politician }) {
 				);
 			});
 		},
-		() => page + 20,
+		() => page + 1,
 		[],
 	);
 
 	function loadMoreData() {
-		setPage((prev) => prev + 20);
+		setPage((prev) => prev + 1);
 		loadMore();
 	}
 
