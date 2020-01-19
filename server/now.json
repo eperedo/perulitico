@@ -2,7 +2,7 @@
 	"name": "perulitico-api",
 	"env": {
 		"NODE_ENV": "production",
-		"PG_URL": "@pg_url_prod"
+		"PG_URL_PROD": "@pg_url_prod"
 	},
 	"builds": [
 		{
