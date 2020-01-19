@@ -4,7 +4,7 @@ const Hapi = require('@hapi/hapi');
 const objectionPlugin = require('./plugins/objection');
 const politiciansRoute = require('./routes/politician.route');
 const pollRoute = require('./routes/polls.details.route');
-// const pollsRoute = require('./routes/polls.route');
+const pollsRoute = require('./routes/polls.route');
 // const politicianRoute = require('./routes/politician.details.route');
 const eventRoute = require('./routes/events.details.route');
 
@@ -22,7 +22,7 @@ async function startServer() {
 	});
 	server.route(politiciansRoute);
 	server.route(pollRoute);
-	// server.route(pollsRoute);
+	server.route(pollsRoute);
 	// server.route(politicianRoute);
 	server.route(eventRoute);
 	await server.start();

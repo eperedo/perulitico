@@ -1,12 +1,4 @@
 const { Model } = require('objection');
-
-/*
-SELECT id, title
-FROM polls
-WHERE to_tsvector(title) @@ to_tsquery('ley')
-order by 1
- */
-
 class Poll extends Model {
 	static get tableName() {
 		return 'polls';
